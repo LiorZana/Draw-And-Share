@@ -8,14 +8,16 @@ const UserModel = require('./models/User.model.js');
 const LoginModel = require('./models/Login.Model.js');
 const { ImageModel, ImageUploadModel } = require('./models/ImageUpload.model.js');
 const { PublicImageModel } = require('./models/PublicImage.model');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const dotenv = require('dotenv');
 dotenv.config()
 
+const port = process.env.PORT || 80;
 const userDb = process.env.USERDB;
-mongoose.connect(userDb, { useNewUrlParser: true });
-
+mongoose.connect(userDb, { useNewUrlParser: true })
+.then(() => console.log('Mongodb connected'))
+.catch(err => console.log('db error', err));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -35,6 +37,7 @@ const fileFilter = (req, file, callback) => {
         callback(null, false);
     }
 }
+
 const upload = multer({ storage: storage, fileFilter: fileFilter })
 
 const app = express();
@@ -470,6 +473,6 @@ app.get('/publicimages/', (req, res) => {
 
 })
 
-app.listen(port = 4000, () => {
+app.listen(port, () => {
     console.log(`Listening on ${port}`);
 });
