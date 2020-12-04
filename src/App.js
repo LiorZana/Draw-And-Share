@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation.js';
 import DrawArea from './containers/DrawArea/DrawArea.js';
-import LandingPage from './components/LandingPage/NewLandingPage.js';
+import LandingPage from './components/LandingPage/LandingPage.js';
 import PopupWrapper from './containers/PopupWrapper/PopupWrapper.js';
 import Footer from './components/Footer/Footer.js';
 import Form from './components/Form/Form.js';
 import Gallery from './components/Gallery/Gallery.js';
 import { withStyles } from "@material-ui/core/styles";
 import triBackground from './trianglifyBackground.svg';
-import './App.css';
 
 
 const styles = theme => {
@@ -104,7 +103,6 @@ class App extends Component {
   }
 
   loadUser = (data) => {
-    console.log(data)
     this.setState({
       isSignedIn: true,
       isMouseOnForm: false,
@@ -112,8 +110,7 @@ class App extends Component {
         id: data.userId,
         username: data.userName,
         email: data.email,
-        joined: data.joined,
-        uploads: data.images
+        joined: data.joined
       }
     })
     this.handleRouteChange('canvas')
@@ -160,7 +157,7 @@ class App extends Component {
 
         {!this.state.isFormOpen ? false :
           <PopupWrapper handleWrapperClick={this.handleWrapperClick}>
-            <Form formType={this.state.formType} loadUser={this.loadUser} setMouseOnForm={this.getIsMouseOnForm} />
+            <Form formType={this.state.formType} handleFetch={this.handleFetch} loadUser={this.loadUser} setMouseOnForm={this.getIsMouseOnForm} />
           </PopupWrapper>}
         <Footer />
 
