@@ -145,10 +145,10 @@ const Form = ({ setMouseOnForm, loadUser, formType, handleFetch }) => {
                 setUserPrompt({ email: '', password: '', userName: 'This user name is already in use by another user' });
                 break;
             case 'userNotFound':
-                setUserPrompt({ email: 'No user was found with that email address', password: '', userName: '' })
+                setUserPrompt({ email: 'Wrong email or password', password: '', userName: '' })
                 break;
             default:
-                setUserPrompt({ email: '', password: '', userName: '' })
+                setUserPrompt({ email: 'Wrong email or password', password: '', userName: '' })
         }
     }, [serverResponse])
 
