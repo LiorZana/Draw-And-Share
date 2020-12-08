@@ -2,6 +2,7 @@
   "name": "drawcanvas",
   "homepage": "http://LiorZana.github.io/Draw-And-Share",
   "version": "0.1.0",
+  "repository": "https://github.com/LiorZana/Draw-And-Share.git",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
